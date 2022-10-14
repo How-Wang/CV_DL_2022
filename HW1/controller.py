@@ -1,8 +1,5 @@
-from ctypes import sizeof
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QFileDialog
-import cv2
-import numpy as np
 from img_pro import img_process
 from img_smo import img_smooth
 from UI import Ui_MainWindow
