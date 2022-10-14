@@ -22,15 +22,16 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui.Color_tran_btn.clicked.connect(self.color_tran)
         self.ui.Color_det_btn.clicked.connect(self.color_dec)
         self.ui.Blend_btn.clicked.connect(self.blend)
+        self.ui.Gau_btn.clicked.connect(self.gau)
+        self.ui.Bil_btn.clicked.connect(self.bil)
+        self.ui.Med_btn.clicked.connect(self.med)
 
     def open_img1(self):
         self.img1_path, _ = QFileDialog.getOpenFileName(self, "Open file", "./")
         self.ui.Load_img1_label.setText(self.img1_path.split('/')[-1])
 
-
     def open_img2(self):
         self.img2_path, _ = QFileDialog.getOpenFileName(self, "Open file", "./")
-        print("img2_paht is:{}".format(self.img2_path))
         self.ui.Load_img2_label.setText(self.img2_path.split('/')[-1])
 
     def color_sep(self):
@@ -63,9 +64,6 @@ class MainWindow_controller(QtWidgets.QMainWindow):
     def blend_update(self, val):
         img1 = cv2.imread(self.img1_path)
         img2 = cv2.imread(self.img2_path)
-        new_size = (min(img1.shape[0],img2.shape[0]), min(img1.shape[1], img2.shape[1]))
-        img1 = cv2.resize(img1,new_size)
-        img2 = cv2.resize(img2,new_size)
         blend_img = cv2.addWeighted(img1, val/255, img2, 1-(val/255), 0)
         cv2.imshow("Blend", blend_img)
 
@@ -74,4 +72,50 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         cv2.createTrackbar('Blend', 'Blend', 0, 255, self.blend_update)
         cv2.setTrackbarPos('Blend', 'Blend', 127)
 
+    def gau_update(self, val):
+        img = cv2.imread(self.img1_path)
+        if val>0:
+            k = val*2 + 1
+            gau_img = cv2.GaussianBlur(img, (k, k), 0)
+            cv2.imshow("Gaussian", gau_img)
+        else: 
+            cv2.imshow("Gaussian", img)
+        
+    def gau(self):
+        cv2.namedWindow("Gaussian")
+        img = cv2.imread(self.img1_path)
+        cv2.imshow("Gaussian", img)
+        cv2.createTrackbar('magnitude', 'Gaussian', 0, 10, self.gau_update)
+        cv2.setTrackbarPos('magnitude', 'Gaussian', 0)
 
+    def bil_update(self, val):
+        img = cv2.imread(self.img1_path)
+        if val>0:
+            k = val*2 + 1
+            bil_img = cv2.bilateralFilter(img, k, 90, 90)
+            cv2.imshow("Bilateral", bil_img)
+        else: 
+            cv2.imshow("Bilateral", img)
+
+    def bil(self):
+        cv2.namedWindow("Bilateral")
+        img = cv2.imread(self.img1_path)
+        cv2.imshow("Bilateral", img)
+        cv2.createTrackbar('magnitude', 'Bilateral', 0, 10, self.bil_update)
+        cv2.setTrackbarPos('magnitude', 'Bilateral', 0)
+
+    def med_update(self, val):
+        img = cv2.imread(self.img1_path)
+        if val>0:
+            k = val*2 + 1
+            med_img = cv2.medianBlur(img, k)
+            cv2.imshow("Median", med_img)
+        else: 
+            cv2.imshow("Median", img)
+
+    def med(self):
+        cv2.namedWindow("Median")
+        img = cv2.imread(self.img1_path)
+        cv2.imshow("Median", img)
+        cv2.createTrackbar('magnitude', 'Median', 0, 10, self.med_update)
+        cv2.setTrackbarPos('magnitude', 'Median', 0) 
