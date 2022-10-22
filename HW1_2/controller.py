@@ -30,5 +30,5 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.img_path, _ = QFileDialog.getOpenFileName(self, "Open file", "./")
         self.transformation.change_img_path(self.img_path)
         self.edge_detection.change_img_path(self.img_path)
-        self.ui.Img_lab.setText(self.img_path.split('/')[-1])
+        self.ui.Img_lab.setText(self.img_path) # .split('/')[-1]
         
