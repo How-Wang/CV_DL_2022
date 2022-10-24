@@ -1,7 +1,7 @@
 from pickle import NONE
 import matplotlib.pyplot as plt
 from PIL import Image
-import torch
+from torch import nn
 import torchvision
 from torchvision import transforms
 import torchvision.datasets as datasets
@@ -35,6 +35,8 @@ class img_classifier(object):
 
     def show_model_stru(self):
         vgg = torchvision.models.vgg19()
+        input_lastLayer = vgg.classifier[6].in_features # last layer input num
+        vgg.classifier[6] = nn.Linear(input_lastLayer,10) # change last layer output
         summary(vgg.cuda(), (3, 224, 224))
 
     def show_data_aug(self):
@@ -74,5 +76,5 @@ class img_classifier(object):
         plt.show()
 
     def show_accu_loss(self):
-        la_img = cv2.imread('./la.png')
+        la_img = cv2.imread('./la_epoch30.png')
         cv2.imshow('accuraccy and loss', la_img)

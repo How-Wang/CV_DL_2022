@@ -45,7 +45,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         # unsqueeze provides the batch dimension
         img_tensor = tfms(img).to('cuda').unsqueeze(0)
 
-        model = torch.load('model_all.pt')
+        model = torch.load('model_epoch_30.pt')
         model.eval()
         output = model(img_tensor)
         # to binarize the output since I had only 1 class
