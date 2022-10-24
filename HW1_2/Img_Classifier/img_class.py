@@ -1,11 +1,12 @@
 from pickle import NONE
 import matplotlib.pyplot as plt
 from PIL import Image
+import torch
 import torchvision
 from torchvision import transforms
 import torchvision.datasets as datasets
 from torchsummary import summary
-
+import cv2
 
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
@@ -73,7 +74,5 @@ class img_classifier(object):
         plt.show()
 
     def show_accu_loss(self):
-        pass
-
-    def inference(self):
-        pass
+        la_img = cv2.imread('./la.png')
+        cv2.imshow('accuraccy and loss', la_img)

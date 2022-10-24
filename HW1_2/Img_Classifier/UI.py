@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(833, 606)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.Img_Class_box = QtWidgets.QGroupBox(self.centralwidget)
@@ -43,11 +43,23 @@ class Ui_MainWindow(object):
         self.Show_Img_box.setTitle("")
         self.Show_Img_box.setObjectName("Show_Img_box")
         self.Img_lab = QtWidgets.QLabel(self.Show_Img_box)
-        self.Img_lab.setGeometry(QtCore.QRect(30, 50, 271, 271))
+        self.Img_lab.setGeometry(QtCore.QRect(50, 40, 224, 224))
+        self.Img_lab.setAlignment(QtCore.Qt.AlignCenter)
         self.Img_lab.setObjectName("Img_lab")
+        self.Class_lab = QtWidgets.QLabel(self.Show_Img_box)
+        self.Class_lab.setGeometry(QtCore.QRect(60, 280, 191, 31))
+        font = QtGui.QFont()
+        font.setFamily("Taipei Sans TC Beta")
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.Class_lab.setFont(font)
+        self.Class_lab.setText("")
+        self.Class_lab.setAlignment(QtCore.Qt.AlignCenter)
+        self.Class_lab.setObjectName("Class_lab")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 833, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -68,13 +80,3 @@ class Ui_MainWindow(object):
         self.Show_Accu_btn.setText(_translate("MainWindow", "4. Show Accuracy and Loss"))
         self.Infer_btn.setText(_translate("MainWindow", "5. Inference"))
         self.Img_lab.setText(_translate("MainWindow", "Image label"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
