@@ -51,6 +51,8 @@ class edge_detection(object):
                         temp += sobx_ker[k, p] * pad_img[i+k, j+p]
                 if temp < 0:
                     temp = 0
+                elif temp > 255:
+                    temp = 255
                 sobx_img[i, j] = temp
         sobx_img = sobx_img.astype(img.dtype)
         cv2.imshow("Sobel X", sobx_img)
@@ -75,6 +77,8 @@ class edge_detection(object):
                         temp += soby_ker[k, p] * pad_img[i+k, j+p]
                 if temp < 0:
                     temp = 0
+                elif temp > 255:
+                    temp = 255
                 soby_img[i, j] = temp
         soby_img = soby_img.astype(img.dtype)
         cv2.imshow("Sobel Y", soby_img)
