@@ -15,7 +15,7 @@ class edge_detection(object):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         (height, width) = img.shape
         # padding original
-        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_CONSTANT,value=0)
+        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_REPLICATE)
         # kernel 
         gau_ker = np.array([[math.exp(-(x**2+y**2)) for x in range(-1,2)] for y in range(-1,2)])
         gau_ker = gau_ker/np.sum(gau_ker)
@@ -38,7 +38,7 @@ class edge_detection(object):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         (height, width) = img.shape
         # padding original
-        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_CONSTANT,value=0)
+        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_REPLICATE)
         # kernel 
         sobx_ker = np.array([[-1,0,1],[-2,0,2],[-1,0,1]])
         # sobel x filter
@@ -64,7 +64,7 @@ class edge_detection(object):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         (height, width) = img.shape
         # padding original
-        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_CONSTANT,value=0)
+        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_REPLICATE)
         # kernel 
         soby_ker = np.array([[1,2,1],[0,0,0],[-1,-2,-1]])
         # sobel y filter
@@ -90,7 +90,7 @@ class edge_detection(object):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         (height, width) = img.shape
         # padding original
-        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_CONSTANT,value=0)
+        pad_img = cv2.copyMakeBorder(img,1,1,1,1,cv2.BORDER_REPLICATE)
 
         # kernel 
         soby_ker = np.array([[1,2,1],[0,0,0],[-1,-2,-1]])
@@ -115,6 +115,7 @@ class edge_detection(object):
                     tempx = 255
                 mag_img[i, j] = math.sqrt(tempy**2 + tempx**2)
         mag_img = mag_img.astype(img.dtype)
+
         cv2.imshow("Original", img)
         cv2.imshow("Magnitude", mag_img)
 
