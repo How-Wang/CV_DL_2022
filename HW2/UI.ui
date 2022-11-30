@@ -229,6 +229,15 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="toolTipDuration">
+       <number>-1</number>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>15</number>
+      </property>
      </widget>
      <widget class="QPushButton" name="Find_extrin_btn">
       <property name="geometry">

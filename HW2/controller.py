@@ -32,7 +32,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui.Count_ring_btn.clicked.connect(self.count_rings)
         self.ui.Find_cor_btn.clicked.connect(self.calibration.find_corners)
         self.ui.Find_intrin_btn.clicked.connect(self.calibration.find_instrinsic)
-        self.ui.Find_extrin_btn.clicked.connect(self.calibration.find_extrinsic)
+        self.ui.Find_extrin_btn.clicked.connect(lambda: self.calibration.find_extrinsic(self.ui.Extrin_num_spin.value()))
         self.ui.Find_dis_btn.clicked.connect(self.calibration.find_distortion)
         self.ui.Show_res_btn.clicked.connect(self.calibration.show_result)
         self.ui.Show_wob_btn.clicked.connect(self.AR.show_wob)
