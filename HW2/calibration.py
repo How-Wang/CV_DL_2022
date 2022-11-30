@@ -101,6 +101,5 @@ class calibration(object):
             img_small = cv2.resize(img, (0,0), fx=0.3, fy=0.3)
             cv2.imshow('distorted', img_small)
             cv2.imshow('undistorted', img_undst_small)
-            if cv2.waitKey(1500) & 0xFF == ord('q'):
-                break
+            cv2.waitKey(1500)
         cv2.destroyAllWindows()

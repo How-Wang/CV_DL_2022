@@ -35,8 +35,8 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui.Find_extrin_btn.clicked.connect(lambda: self.calibration.find_extrinsic(self.ui.Extrin_num_spin.value()))
         self.ui.Find_dis_btn.clicked.connect(self.calibration.find_distortion)
         self.ui.Show_res_btn.clicked.connect(self.calibration.show_result)
-        self.ui.Show_wob_btn.clicked.connect(self.AR.show_wob)
-        self.ui.Show_wv_btn.clicked.connect(self.AR.show_wv)
+        self.ui.Show_wob_btn.clicked.connect(lambda: self.AR.show_wob(self.ui.Input_text_edit.toPlainText()))
+        self.ui.Show_wv_btn.clicked.connect(lambda: self.AR.show_wv(self.ui.Input_text_edit.toPlainText()))
         self.ui.Stereo_dis_btn.clicked.connect(self.stereo_disparity.stereo_disparity_map)
 
     def open_folder(self):
